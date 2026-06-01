@@ -42,12 +42,10 @@ contract MemeFactory is Ownable {
     /// @param _perMint     Tokens minted per purchase
     /// @param _price       Price per token in wei
     /// @return tokenAddr   Address of the deployed proxy
-    function deployMeme(
-        string calldata _symbol,
-        uint256 _totalSupply,
-        uint256 _perMint,
-        uint256 _price
-    ) external returns (address tokenAddr) {
+    function deployMeme(string calldata _symbol, uint256 _totalSupply, uint256 _perMint, uint256 _price)
+        external
+        returns (address tokenAddr)
+    {
         require(_totalSupply > 0, "Total supply must be > 0");
         require(_perMint > 0 && _perMint <= _totalSupply, "Invalid perMint");
 
@@ -73,18 +71,18 @@ contract MemeFactory is Ownable {
 
         // 分配费用
         if (projectFee > 0) {
-            (bool ok, ) = owner().call{value: projectFee}("");
+            (bool ok,) = owner().call{value: projectFee}("");
             require(ok, "Project fee transfer failed");
         }
         if (issuerRevenue > 0) {
-            (bool ok, ) = token.issuer().call{value: issuerRevenue}("");
+            (bool ok,) = token.issuer().call{value: issuerRevenue}("");
             require(ok, "Issuer revenue transfer failed");
         }
 
         // 退还超额支付
         uint256 refund = msg.value - cost;
         if (refund > 0) {
-            (bool ok, ) = msg.sender.call{value: refund}("");
+            (bool ok,) = msg.sender.call{value: refund}("");
             require(ok, "Refund failed");
         }
 

@@ -10,11 +10,11 @@ contract MemeToken {
     uint8 public constant decimals = 18;
 
     uint256 public totalSupply; // 总发行量
-    uint256 public perMint;     // 每次铸造数量
-    uint256 public price;        // 每个 token 的价格 (wei)
+    uint256 public perMint; // 每次铸造数量
+    uint256 public price; // 每个 token 的价格 (wei)
     uint256 public mintedSupply; // 已铸造数量
 
-    address public issuer;  // Meme 发行者
+    address public issuer; // Meme 发行者
     address public factory; // 工厂合约地址
 
     bool private _initialized;

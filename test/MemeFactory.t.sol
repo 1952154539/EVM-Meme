@@ -84,7 +84,7 @@ contract MemeFactoryTest is Test {
         address tokenAddr = factory.deployMeme("DOGE", 1_000_000 ether, 1000 ether, 0.01 ether);
 
         uint256 cost = 1000 ether * 0.01 ether; // 10 ether
-        uint256 expectedProjectFee = cost / 100;     // 0.1 ether (1%)
+        uint256 expectedProjectFee = cost / 100; // 0.1 ether (1%)
         uint256 expectedIssuerRevenue = cost - expectedProjectFee; // 9.9 ether
 
         uint256 projectBalBefore = projectOwner.balance;
